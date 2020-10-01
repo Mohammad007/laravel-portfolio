@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Work - Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+@include('filecss')
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+ @include('adminside')
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+      @include('adminnav')
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Work</h1>
+          <a href="{{ url('/') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Website View</a>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+
+            @if (!empty($data->id))
+                
+            <div class="col-lg-12 mb-4">
+
+                <form class="user" method="POST" action="{{ url('admin/Workupdate') }}" >
+                  {{csrf_field()}}
+  
+                  <input type="hidden" name="id" value="{{ $data->id }}">
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Project</label>
+                    <input type="text" class="form-control" name="project" value="{{ $data->project }}">
+                    </div>
+                    <div class="col-sm-6">
+                      <label>Title</label>
+                      <input type="text" class="form-control" name="title" value="{{ $data->title }}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Year</label>
+                    <input type="text" class="form-control" name="year" value="{{ $data->year }}">
+                    </div>
+                    <div class="col-sm-6">
+                      <label>Content</label>
+                      <textarea class="form-control" name="content" rows="5">{{ $data->content }}</textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Work 1</label>
+                    <input type="text" class="form-control" name="work1" value="{{ $data->work1 }}">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Work 2</label>
+                      <input type="text" class="form-control" name="work2" value="{{ $data->work2 }}">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Work 3</label>
+                    <input type="text" class="form-control" name="work3" value="{{ $data->work3 }}">
+                    </div>
+                  </div>
+  
+                 
+                  <div class="col-sm-6">
+                  <input type="submit" class="btn btn-primary btn-user btn-block" value="Update" >
+                  </div>
+                </form>
+  
+              </div>
+                  
+              @else
+                  
+              <div class="col-lg-12 mb-4">
+
+                <form class="user" method="POST" action="{{ url('admin/Workcreate') }}" >
+                  {{csrf_field()}}
+  
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Project</label>
+                    <input type="text" class="form-control" name="project" placeholder="Project">
+                    </div>
+                    <div class="col-sm-6">
+                      <label>Title</label>
+                      <input type="text" class="form-control" name="title" placeholder="Title">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Year</label>
+                    <input type="text" class="form-control" name="year" placeholder="Year">
+                    </div>
+                    <div class="col-sm-6">
+                      <label>Content</label>
+                      <textarea class="form-control" name="content" placeholder="Content" rows="5"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Work 1</label>
+                    <input type="text" class="form-control" name="work1" placeholder="Work 1">
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Work 2</label>
+                      <input type="text" class="form-control" name="work2" placeholder="Work 2">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label>Work 3</label>
+                    <input type="text" class="form-control" name="work3" placeholder="Work 3">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                  <input type="submit" class="btn btn-primary btn-user btn-block" value="Create" >
+                  </div>
+                </form>
+  
+              </div>
+
+              @endif
+
+              <div class="col-lg-12 mb-4">
+
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Project</th>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Content</th>
+                        <th>Work 1</th>
+                        <th>Work 2</th>
+                        <th>Work 3</th>
+                        <th>Action</th>
+                    </tr>
+
+                    @php
+                        foreach($work as $show):
+                    @endphp
+                    <tr>
+                        <td>{{ $show->id }}</td>
+                        <td>{{ $show->project }}</td>
+                        <td>{{ $show->title }}</td>
+                        <td>{{ $show->year }}</td>
+                        <td>{{ $show->content }}</td>
+                        <td>{{ $show->work1 }}</td>
+                        <td>{{ $show->work2 }}</td>
+                        <td>{{ $show->work3 }}</td>
+                        <td>
+                            <a href="{{route('admin/Workedit',$show->id)}}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('admin/Workdelete',$show->id)}}" class=" btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    @php
+                        endforeach
+                    @endphp
+                </table>
+
+              </div>
+           
+          </div>
+
+         
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+     
+      @include('filejs')
+
+</body>
+
+</html>
