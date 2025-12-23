@@ -1,17 +1,5 @@
-// Update routes/web.php to include the About route
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AboutController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/', function () {
-    return view('welcome');
+// routes/web.php (add these routes)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile/avatar', [App\Http\Controllers\ProfileController::class, 'uploadAvatar'])->name('profile.avatar');
 });
-
-Route::get('/about', [AboutController::class, 'index'])->name('about');
